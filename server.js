@@ -25,6 +25,12 @@ webServer.get('/', (req, res) => {
     });
 });
 
+webServer.get('/service2', (req, res) => { 
+    // при обращении по этому УРЛу - ответ зависит от GET-параметров
+    console.log(`service2 called, req.originalUrl=${req.originalUrl}, req.query=`,req.query);
+    res.send("service2 ok, par1="+req.query.par1+" par2="+req.query.par2);
+});
+
 webServer.get('/contacts', (req, res) => {
     fs.writeFileSync(__dirname+'/server-actions.txt', `Contacts page started on ${PORT} ${os.EOL}` )
     res.send('<h1>Contacts</h1>');
